@@ -1,13 +1,19 @@
 package com.example.jenkinsdemo.service;
 
 import com.example.jenkinsdemo.bean.ListNode;
+import com.example.jenkinsdemo.util.JsonUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author: lichaoyang
  * @Date: 2020-03-18 21:44
  */
 @Service
+@Slf4j
 public class StressService {
 
     public void easy(){
@@ -27,19 +33,21 @@ public class StressService {
             next.next = node;
             next = next.next;
         }
-        ListNode list = listNode;
-        System.out.println("\n排序前");
-        while (list != null){
-            System.out.print(list.val+" ");
-            list = list.next;
+        ListNode head = listNode;
+        List<Integer> list = new ArrayList<>(num);
+        while (head != null){
+            list.add(head.val);
+            head = head.next;
         }
-
+        log.info("排序前,list->{}", JsonUtil.object2Json(list));
         ListNode mylist = sortList(listNode);
-        System.out.println("\n排序后");
+        list.clear();
         while (mylist != null){
-            System.out.print(mylist.val+" ");
+            list.add(mylist.val);
             mylist = mylist.next;
         }
+        log.info("排序后,list->{}", JsonUtil.object2Json(list));
+        list.clear();
     }
 
 
