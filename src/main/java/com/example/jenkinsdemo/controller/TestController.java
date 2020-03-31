@@ -3,7 +3,6 @@ package com.example.jenkinsdemo.controller;
 import com.example.jenkinsdemo.bean.ParaObj;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,6 +34,11 @@ public class TestController {
 
     @PostMapping(value = "/post")
     public ResponseEntity<ParaObj> post(@RequestBody ParaObj obj){
+        return new ResponseEntity<>(obj,HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/post2")
+    public ResponseEntity<ParaObj> post2(ParaObj obj){
         return new ResponseEntity<>(obj,HttpStatus.OK);
     }
 }
