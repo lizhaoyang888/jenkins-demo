@@ -17,7 +17,7 @@ public class TestController {
 
     @GetMapping(value = "/")
     public ResponseEntity<String> index(){
-        return new ResponseEntity<>("hello wold", HttpStatus.OK);
+        return new ResponseEntity<>("test", HttpStatus.OK);
     }
 
     @GetMapping(value = "/branch")

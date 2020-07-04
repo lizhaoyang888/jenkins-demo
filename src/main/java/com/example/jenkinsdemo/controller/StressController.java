@@ -21,6 +21,11 @@ public class StressController {
     @Autowired
     private StressService stressService;
 
+    @GetMapping(value = "/")
+    public ResponseEntity<String> index(){
+        return new ResponseEntity<>("stress", HttpStatus.OK);
+    }
+
     @GetMapping("/easy")
     public ResponseEntity<String> easy(){
         long startTime=System.currentTimeMillis();
