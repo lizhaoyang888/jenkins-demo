@@ -15,7 +15,7 @@ import java.util.concurrent.*;
 public class ThreadPoolConfig {
 
     @Bean("stressThreadPool")
-    public ExecutorService threadPool() {
+    public ExecutorService stressThreadPool() {
         ThreadFactory threadFactory = new ThreadFactoryBuilder()
                 .setNameFormat("thread-pool-%d").build();
 
