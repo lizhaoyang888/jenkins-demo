@@ -19,7 +19,7 @@ public class ThreadLocalService {
 
     private ThreadLocal<String> threadLocal = new ThreadLocal<>();
 
-    private String maxString = "面朝大海，春暖花开\n" +
+    private String maxString = "\n面朝大海，春暖花开\n" +
             "从明天起，做一个幸福的人\n" +
             "喂马，劈柴，周游世界\n" +
             "从明天起，关心粮食和蔬菜\n" +
@@ -37,7 +37,7 @@ public class ThreadLocalService {
             "愿你在尘世获得幸福\n" +
             "我只愿面朝大海，春暖花开";
 
-    @Qualifier("threadPool")
+    @Qualifier("stressThreadPool")
     @Autowired
     private ExecutorService executorService;
 
