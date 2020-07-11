@@ -24,8 +24,7 @@ public class ThreadPoolConfig {
         try {
             int cpuNumber = Runtime.getRuntime().availableProcessors();
             return new ThreadPoolExecutor(
-                    (cpuNumber * 2) + 4,
-                    cpuNumber * 4,
+                    4,4,
                     300,
                     TimeUnit.SECONDS,
                     new LinkedBlockingQueue<>(10240),
