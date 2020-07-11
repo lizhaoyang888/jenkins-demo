@@ -22,7 +22,7 @@ public class TestController {
 
     @GetMapping(value = "/branch")
     public ResponseEntity<String> test(){
-        return new ResponseEntity<>("develop", HttpStatus.OK);
+        return new ResponseEntity<>("master", HttpStatus.OK);
     }
 
     @GetMapping(value = "/get")
