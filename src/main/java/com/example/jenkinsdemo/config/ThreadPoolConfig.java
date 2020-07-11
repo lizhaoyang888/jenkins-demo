@@ -1,6 +1,7 @@
 package com.example.jenkinsdemo.config;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,6 +13,7 @@ import java.util.concurrent.*;
  */
 
 @Configuration
+@Slf4j
 public class ThreadPoolConfig {
 
     @Bean("stressThreadPool")
@@ -19,16 +21,21 @@ public class ThreadPoolConfig {
         ThreadFactory threadFactory = new ThreadFactoryBuilder()
                 .setNameFormat("thread-pool-%d").build();
 
-        int cpuNumber = Runtime.getRuntime().availableProcessors();
-        return new ThreadPoolExecutor(
-                (cpuNumber * 2) + 4,
-                cpuNumber * 4,
-                300,
-                TimeUnit.SECONDS,
-                new LinkedBlockingQueue<>(10240),
-                threadFactory,
-                new ThreadPoolExecutor.AbortPolicy()
-        );
+        try {
+            int cpuNumber = Runtime.getRuntime().availableProcessors();
+            return new ThreadPoolExecutor(
+                    (cpuNumber * 2) + 4,
+                    cpuNumber * 4,
+                    300,
+                    TimeUnit.SECONDS,
+                    new LinkedBlockingQueue<>(10240),
+                    threadFactory,
+                    new ThreadPoolExecutor.AbortPolicy()
+            );
+        }catch (Exception e){
+            log.info("我知道哪儿错了");
+        }
+        return null;
     }
 
 }
