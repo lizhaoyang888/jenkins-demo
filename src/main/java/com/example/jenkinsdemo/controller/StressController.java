@@ -2,6 +2,7 @@ package com.example.jenkinsdemo.controller;
 
 import com.example.jenkinsdemo.bean.MaxObj;
 import com.example.jenkinsdemo.service.StressService;
+import com.example.jenkinsdemo.service.ThreadLocalService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,9 @@ public class StressController {
 
     @Autowired
     private StressService stressService;
+
+    @Autowired
+    private ThreadLocalService threadLocalService;
 
     @GetMapping(value = "/")
     public ResponseEntity<String> index(){
@@ -45,6 +49,12 @@ public class StressController {
     @PostMapping("/flow")
     public ResponseEntity flow(@RequestBody MaxObj maxObj){
         return new ResponseEntity(maxObj,HttpStatus.OK);
+    }
+
+    @GetMapping("/leak")
+    public ResponseEntity<String> leak(){
+        threadLocalService.memoryLeak();
+        return new ResponseEntity<>("内存泄漏成功",HttpStatus.OK);
     }
 
 }
